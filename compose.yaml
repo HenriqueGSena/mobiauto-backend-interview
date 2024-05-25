@@ -1,10 +1,11 @@
 services:
   mysql:
+    container_name: db-mobi
     image: 'mysql:latest'
     environment:
       - 'MYSQL_DATABASE=mobiDatabase'
       - 'MYSQL_PASSWORD=root'
       - 'MYSQL_ROOT_PASSWORD=root'
-      - 'MYSQL_USER=root'
+      - 'MYSQL_USER=admin'
     ports:
-      - '3306'
+      - '3306:3306'
