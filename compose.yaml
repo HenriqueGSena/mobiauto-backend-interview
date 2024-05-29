@@ -1,9 +1,9 @@
 services:
   mysql:
-    container_name: db-mobi
+    container_name: db-mobauto
     image: 'mysql:latest'
     environment:
-      - 'MYSQL_DATABASE=mobiDatabase'
+      - 'MYSQL_DATABASE=mobDatabase'
       - 'MYSQL_PASSWORD=root'
       - 'MYSQL_ROOT_PASSWORD=root'
       - 'MYSQL_USER=admin'

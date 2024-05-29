@@ -21,18 +21,14 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Opportunity> opportunities;
-
     public Client() {
     }
 
-    public Client(Long id, String name, String mail, String phone, List<Opportunity> opportunities) {
+    public Client(Long id, String name, String mail, String phone) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.phone = phone;
-        this.opportunities = opportunities;
     }
 
     public Long getId() {
@@ -67,20 +63,12 @@ public class Client {
         this.phone = phone;
     }
 
-    public List<Opportunity> getOpportunities() {
-        return opportunities;
-    }
-
-    public void setOpportunities(List<Opportunity> opportunities) {
-        this.opportunities = opportunities;
-    }
-
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Client client)) return false;
 
-        return getId().equals(client.getId()) && getName().equals(client.getName()) && getMail().equals(client.getMail()) && getPhone().equals(client.getPhone()) && getOpportunities().equals(client.getOpportunities());
+        return getId().equals(client.getId()) && getName().equals(client.getName()) && getMail().equals(client.getMail()) && getPhone().equals(client.getPhone());
     }
 
     @Override
@@ -89,18 +77,16 @@ public class Client {
         result = 31 * result + getName().hashCode();
         result = 31 * result + getMail().hashCode();
         result = 31 * result + getPhone().hashCode();
-        result = 31 * result + getOpportunities().hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", mail='" + mail + '\'' +
-                ", phone='" + phone + '\'' +
-                ", opportunities=" + opportunities +
-                '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", mail='" + mail + '\'' +
+            ", phone='" + phone + '\'' +
+            '}';
     }
 }

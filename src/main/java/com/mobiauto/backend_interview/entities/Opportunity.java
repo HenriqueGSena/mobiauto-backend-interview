@@ -1,7 +1,10 @@
 package com.mobiauto.backend_interview.entities;
 
-import com.mobiauto.backend_interview.enums.Status;
+import com.mobiauto.backend_interview.entities.enums.Status;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "opportunity")
@@ -30,22 +33,27 @@ public class Opportunity {
     @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
-    @Column(name = "dateAssignment")
-    private String dateAssignment;
+    @ManyToOne
+    @JoinColumn(name = "resale_id", nullable = false)
+    private Resale resale;
 
-    @Column(name = "dateCreate")
-    private String dateCreate;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDateTime dateAssignment;
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDateTime dateCreate;
 
     public Opportunity() {
     }
 
-    public Opportunity(Long id, Status status, String description, Client client, User user, Vehicle vehicle, String dateAssignment, String dateCreate) {
+    public Opportunity(Long id, Status status, String description, Client client, User user, Vehicle vehicle, Resale resale, LocalDateTime dateAssignment, LocalDateTime dateCreate) {
         this.id = id;
         this.status = status;
         this.description = description;
         this.client = client;
         this.user = user;
         this.vehicle = vehicle;
+        this.resale = resale;
         this.dateAssignment = dateAssignment;
         this.dateCreate = dateCreate;
     }
@@ -98,19 +106,27 @@ public class Opportunity {
         this.vehicle = vehicle;
     }
 
-    public String getDateAssignment() {
+    public Resale getResale() {
+        return resale;
+    }
+
+    public void setResale(Resale resale) {
+        this.resale = resale;
+    }
+
+    public LocalDateTime getDateAssignment() {
         return dateAssignment;
     }
 
-    public void setDateAssignment(String dateAssignment) {
+    public void setDateAssignment(LocalDateTime dateAssignment) {
         this.dateAssignment = dateAssignment;
     }
 
-    public String getDateCreate() {
+    public LocalDateTime getDateCreate() {
         return dateCreate;
     }
 
-    public void setDateCreate(String dateCreate) {
+    public void setDateCreate(LocalDateTime dateCreate) {
         this.dateCreate = dateCreate;
     }
 
@@ -119,7 +135,7 @@ public class Opportunity {
         if (this == o) return true;
         if (!(o instanceof Opportunity that)) return false;
 
-        return getId().equals(that.getId()) && getStatus() == that.getStatus() && getDescription().equals(that.getDescription()) && getClient().equals(that.getClient()) && getUser().equals(that.getUser()) && getVehicle().equals(that.getVehicle()) && getDateAssignment().equals(that.getDateAssignment()) && getDateCreate().equals(that.getDateCreate());
+        return getId().equals(that.getId()) && getStatus() == that.getStatus() && getDescription().equals(that.getDescription()) && getClient().equals(that.getClient()) && getUser().equals(that.getUser()) && getVehicle().equals(that.getVehicle()) && getResale().equals(that.getResale()) && getDateAssignment().equals(that.getDateAssignment()) && getDateCreate().equals(that.getDateCreate());
     }
 
     @Override
@@ -130,6 +146,7 @@ public class Opportunity {
         result = 31 * result + getClient().hashCode();
         result = 31 * result + getUser().hashCode();
         result = 31 * result + getVehicle().hashCode();
+        result = 31 * result + getResale().hashCode();
         result = 31 * result + getDateAssignment().hashCode();
         result = 31 * result + getDateCreate().hashCode();
         return result;
@@ -138,14 +155,15 @@ public class Opportunity {
     @Override
     public String toString() {
         return "Opportunity{" +
-                "id=" + id +
-                ", status=" + status +
-                ", description='" + description + '\'' +
-                ", client=" + client +
-                ", user=" + user +
-                ", vehicle=" + vehicle +
-                ", dateAssignment='" + dateAssignment + '\'' +
-                ", dateCreate='" + dateCreate + '\'' +
-                '}';
+            "id=" + id +
+            ", status=" + status +
+            ", description='" + description + '\'' +
+            ", client=" + client +
+            ", user=" + user +
+            ", vehicle=" + vehicle +
+            ", resale=" + resale +
+            ", dateAssignment=" + dateAssignment +
+            ", dateCreate=" + dateCreate +
+            '}';
     }
 }

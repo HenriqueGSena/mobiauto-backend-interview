@@ -1,4 +1,4 @@
-package com.mobiauto.backend_interview.enums;
+package com.mobiauto.backend_interview.entities.enums;
 
 public enum Status {
 
