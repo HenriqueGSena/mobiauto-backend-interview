@@ -1,6 +1,8 @@
 package com.mobiauto.backend_interview.controller;
 
+import com.mobiauto.backend_interview.config.TokenService;
 import com.mobiauto.backend_interview.dto.AuthenticationDTO;
+import com.mobiauto.backend_interview.dto.LoginDTO;
 import com.mobiauto.backend_interview.dto.RegisterDTO;
 import com.mobiauto.backend_interview.entities.Usuarios;
 import com.mobiauto.backend_interview.repository.UsuariosRepository;
@@ -25,12 +27,16 @@ public class AuthenticationController {
     @Autowired
     private UsuariosRepository usuariosRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
+        var token = tokenService.generateToken((Usuarios) auth.getPrincipal());
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(new LoginDTO(token));
     }
 
     @PostMapping("/register")
