@@ -34,11 +34,13 @@ public class Usuarios implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "cargos")
     private Cargos cargos;
 
-    public Usuarios(String login, String password, Cargos cargos) {
+    public Usuarios(String login, String email, String password, Cargos cargos) {
         this.login = login;
-        this.password =  password;
+        this.email = email;
+        this.password = password;
         this.cargos = cargos;
     }
 
