@@ -26,4 +26,22 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="usuario-2" author="sena">
+        <renameColumn tableName="usuarios" oldColumnName="login" newColumnName="nome" columnDataType="VARCHAR(255)"/>
+        <renameColumn tableName="usuarios" oldColumnName="password" newColumnName="senha" columnDataType="VARCHAR(255)"/>
+    </changeSet>
+
+    <changeSet id="usuario-3" author="sena">
+        <addColumn tableName="usuarios">
+            <column name="revenda_id" type="bigint">
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="usuarios"
+                                 baseColumnNames="revenda_id"
+                                 constraintName="fk_usuarios_revenda"
+                                 referencedTableName="revenda"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
 </databaseChangeLog>

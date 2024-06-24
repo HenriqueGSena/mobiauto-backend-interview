@@ -8,39 +8,42 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Table
 @Entity(name = "usuarios")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Usuarios implements UserDetails {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(name = "login")
-    private String login;
+    @Column(name = "nome")
+    private String nome;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "senha")
+    private String senha;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "cargos")
     private Cargos cargos;
 
-    public Usuarios(String login, String email, String password, Cargos cargos) {
-        this.login = login;
+    @ManyToOne
+    @JoinColumn(name = "revenda_id")
+    private Revenda revenda;
+
+    public Usuario(String nome, String email, String senha, Cargos cargos) {
+        this.nome = nome;
         this.email = email;
-        this.password = password;
+        this.senha = senha;
         this.cargos = cargos;
     }
 
@@ -66,8 +69,13 @@ public class Usuarios implements UserDetails {
     }
 
     @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
     public String getUsername() {
-        return login;
+        return nome;
     }
 
     @Override

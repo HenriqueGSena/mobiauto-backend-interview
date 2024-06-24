@@ -25,14 +25,18 @@ public class Revenda {
     @OneToMany(mappedBy = "revenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Oportunidade> oportunidades = new ArrayList<>();
 
+    @OneToMany(mappedBy = "revenda", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Usuario> usuarios = new ArrayList<>();
+
     public Revenda() {
     }
 
-    public Revenda(Long id, String nomeSocial, String cnpj, List<Oportunidade> oportunidades) {
+    public Revenda(Long id, String nomeSocial, String cnpj, List<Oportunidade> oportunidades, List<Usuario> usuarios) {
         this.id = id;
         this.nomeSocial = nomeSocial;
         this.cnpj = cnpj;
         this.oportunidades = oportunidades;
+        this.usuarios = usuarios;
     }
 
     public Long getId() {
@@ -65,5 +69,13 @@ public class Revenda {
 
     public void setOportunidades(List<Oportunidade> oportunidades) {
         this.oportunidades = oportunidades;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }
