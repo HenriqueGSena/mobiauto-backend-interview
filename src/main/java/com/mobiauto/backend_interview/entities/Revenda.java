@@ -34,8 +34,8 @@ public class Revenda {
     @OneToMany(mappedBy = "revenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Oportunidade> oportunidades = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "revendas")
-    private Set<Usuario> usuarios = new HashSet<>();
+    @OneToMany(mappedBy = "revenda")
+    private Set<UsuarioRevenda> usuarioRevenda;
 
     public Revenda(RevendaRequestDTO body) {
         this.nomeSocial = body.nomeSocial();

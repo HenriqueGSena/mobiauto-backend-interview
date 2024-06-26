@@ -38,12 +38,8 @@ public class Usuario implements UserDetails {
     @Column(name = "cargos")
     private Cargos cargos;
 
-    @ManyToMany
-    @JoinTable(
-            name = "usuarios_revenda",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "revenda_id"))
-    private Set<Revenda> revendas = new HashSet<>();
+    @OneToMany(mappedBy = "usuario")
+    private Set<UsuarioRevenda> usuarioRevenda;
 
     public Usuario(String nome, String email, String senha, Cargos cargos) {
         this.nome = nome;

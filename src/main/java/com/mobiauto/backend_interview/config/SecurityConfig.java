@@ -46,8 +46,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(SWAGGER_WHITELIST).permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/revendas/criar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/usuarios/{usuarioId}/revendas/{revendaId}").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
