@@ -8,9 +8,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-@Table
+@Table(name = "usuarios")
 @Entity(name = "usuarios")
 @Getter
 @Setter
@@ -20,8 +22,8 @@ import java.util.List;
 public class Usuario implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "nome")
     private String nome;
@@ -36,9 +38,12 @@ public class Usuario implements UserDetails {
     @Column(name = "cargos")
     private Cargos cargos;
 
-    @ManyToOne
-    @JoinColumn(name = "revenda_id")
-    private Revenda revenda;
+    @ManyToMany
+    @JoinTable(
+            name = "usuarios_revenda",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "revenda_id"))
+    private Set<Revenda> revendas = new HashSet<>();
 
     public Usuario(String nome, String email, String senha, Cargos cargos) {
         this.nome = nome;

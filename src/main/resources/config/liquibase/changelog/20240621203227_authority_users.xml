@@ -8,40 +8,22 @@
 
     <changeSet id="usuarios-1" author="sena">
         <createTable tableName="usuarios">
-            <column name="id" type="VARCHAR(36)">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="login" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
+            <column name="nome" type="VARCHAR(255)">
+                <constraints nullable="false" />
             </column>
             <column name="email" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false" />
             </column>
-            <column name="password" type="VARCHAR(255)">
+            <column name="senha" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="cargos" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-    </changeSet>
-
-    <changeSet id="usuario-2" author="sena">
-        <renameColumn tableName="usuarios" oldColumnName="login" newColumnName="nome" columnDataType="VARCHAR(255)"/>
-        <renameColumn tableName="usuarios" oldColumnName="password" newColumnName="senha" columnDataType="VARCHAR(255)"/>
-    </changeSet>
-
-    <changeSet id="usuario-3" author="sena">
-        <addColumn tableName="usuarios">
-            <column name="revenda_id" type="bigint">
-            </column>
-        </addColumn>
-
-        <addForeignKeyConstraint baseTableName="usuarios"
-                                 baseColumnNames="revenda_id"
-                                 constraintName="fk_usuarios_revenda"
-                                 referencedTableName="revenda"
-                                 referencedColumnNames="id"/>
     </changeSet>
 
 </databaseChangeLog>

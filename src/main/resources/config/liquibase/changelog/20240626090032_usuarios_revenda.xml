@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="usuarios_revenda" author="sena">
+        <createTable tableName="usuarios_revenda">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="usuario_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="revenda_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="usuarios_revenda"
+                                 baseColumnNames="usuario_id"
+                                 constraintName="fk_usuarios_revenda_usuario"
+                                 referencedTableName="usuarios"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="usuarios_revenda"
+                                 baseColumnNames="revenda_id"
+                                 constraintName="fk_usuarios_revenda_revenda"
+                                 referencedTableName="revenda"
+                                 referencedColumnNames="id"/>
+
+        <createIndex indexName="idx_usuario_id" tableName="usuarios_revenda">
+            <column name="usuario_id"/>
+        </createIndex>
+
+        <createIndex indexName="idx_revenda_id" tableName="usuarios_revenda">
+            <column name="revenda_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

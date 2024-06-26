@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UsuariosRepository extends JpaRepository<Usuario, String> {
+public interface UsuariosRepository extends JpaRepository<Usuario, Long> {
 
     UserDetails findByNome(String nome);
 }

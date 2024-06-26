@@ -8,14 +8,14 @@
 
     <changeSet id="revenda" author="sena">
         <createTable tableName="revenda">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="nome_social" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false" />
             </column>
             <column name="cnpj" type="VARCHAR(14)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false" />
             </column>
         </createTable>
     </changeSet>
