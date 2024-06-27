@@ -1,13 +1,22 @@
 package com.mobiauto.backend_interview.entities;
 
+import com.mobiauto.backend_interview.dto.RevendaRequestDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-@Entity
+@Entity(name = "revenda")
 @Table(name = "revenda")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Revenda {
 
     @Id
@@ -25,45 +34,11 @@ public class Revenda {
     @OneToMany(mappedBy = "revenda", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Oportunidade> oportunidades = new ArrayList<>();
 
-    public Revenda() {
-    }
+    @OneToMany(mappedBy = "revenda")
+    private Set<UsuarioRevenda> usuarioRevenda;
 
-    public Revenda(Long id, String nomeSocial, String cnpj, List<Oportunidade> oportunidades) {
-        this.id = id;
-        this.nomeSocial = nomeSocial;
-        this.cnpj = cnpj;
-        this.oportunidades = oportunidades;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public @NotBlank String getNomeSocial() {
-        return nomeSocial;
-    }
-
-    public void setNomeSocial(@NotBlank String nomeSocial) {
-        this.nomeSocial = nomeSocial;
-    }
-
-    public @NotBlank String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(@NotBlank String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public List<Oportunidade> getOportunidades() {
-        return oportunidades;
-    }
-
-    public void setOportunidades(List<Oportunidade> oportunidades) {
-        this.oportunidades = oportunidades;
+    public Revenda(RevendaRequestDTO body) {
+        this.nomeSocial = body.nomeSocial();
+        this.cnpj = body.cnpj();
     }
 }

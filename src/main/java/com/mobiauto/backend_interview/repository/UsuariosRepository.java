@@ -1,12 +1,13 @@
 package com.mobiauto.backend_interview.repository;
 
-import com.mobiauto.backend_interview.entities.Usuarios;
+import com.mobiauto.backend_interview.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UsuariosRepository extends JpaRepository<Usuarios, String> {
+public interface UsuariosRepository extends JpaRepository<Usuario, Long> {
 
-    UserDetails findByLogin(String login);
+    UserDetails findByNome(String nome);
+    Usuario findByEmail(String email);
 }

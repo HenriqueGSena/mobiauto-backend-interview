@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="oportunidade" author="sena">
+        <createTable tableName="oportunidade">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_atribuicao" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_criacao" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cliente_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="veiculos_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="revenda_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="oportunidade-2" author="sena">
+        <addForeignKeyConstraint baseTableName="oportunidade"
+                                 baseColumnNames="cliente_id"
+                                 constraintName="fk_oportunidade_cliente"
+                                 referencedTableName="cliente"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="oportunidade-3" author="sena">
+        <addForeignKeyConstraint baseTableName="oportunidade"
+                                 baseColumnNames="veiculos_id"
+                                 constraintName="fk_oportunidade_veiculos"
+                                 referencedTableName="veiculos"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="oportunidade-4" author="sena">
+        <addForeignKeyConstraint baseTableName="oportunidade"
+                                 baseColumnNames="revenda_id"
+                                 constraintName="fk_oportunidade_revenda"
+                                 referencedTableName="revenda"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>
