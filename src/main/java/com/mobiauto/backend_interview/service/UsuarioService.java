@@ -1,15 +1,19 @@
 package com.mobiauto.backend_interview.service;
 
+import com.mobiauto.backend_interview.dto.UsuarioDTO;
 import com.mobiauto.backend_interview.entities.Revenda;
 import com.mobiauto.backend_interview.entities.Usuario;
 import com.mobiauto.backend_interview.entities.UsuarioRevenda;
 import com.mobiauto.backend_interview.repository.RevendaRepository;
 import com.mobiauto.backend_interview.repository.UsuarioRevendaRepository;
 import com.mobiauto.backend_interview.repository.UsuariosRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService {
@@ -35,5 +39,12 @@ public class UsuarioService {
         } else {
             throw new RuntimeException("Erro ao associar usuario a revenda");
         }
+    }
+
+    @Transactional
+    public List<UsuarioDTO> listaUsuarios() {
+        return usuariosRepository.findAll().stream()
+               .map(UsuarioDTO::new)
+               .collect(Collectors.toList());
     }
 }

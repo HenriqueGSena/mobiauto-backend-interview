@@ -24,6 +24,7 @@ public class UsuarioDTO {
     }
 
     public UsuarioDTO(Usuario usuario) {
+        this.id = usuario.getId().toString();
         this.nome = usuario.getNome();
         this.email = usuario.getEmail();
         this.senha = usuario.getSenha();
