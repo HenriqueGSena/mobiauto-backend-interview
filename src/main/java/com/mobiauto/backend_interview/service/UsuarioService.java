@@ -47,4 +47,18 @@ public class UsuarioService {
                .map(UsuarioDTO::new)
                .collect(Collectors.toList());
     }
+
+    public UsuarioDTO atualizarUsuarios(Long usuarioId, UsuarioDTO usuarioDTO) {
+        Optional<Usuario> usuario = usuariosRepository.findById(usuarioId);
+        if (usuario.isPresent()) {
+            Usuario usuarioAtualizado = usuario.get();
+            usuarioAtualizado.setNome(usuarioDTO.getNome());
+            usuarioAtualizado.setEmail(usuarioDTO.getEmail());
+            usuarioAtualizado.setSenha(usuarioDTO.getSenha());
+            usuarioAtualizado.setCargos(usuarioDTO.getCargos());
+            return new UsuarioDTO(usuariosRepository.save(usuarioAtualizado));
+        } else {
+            throw new RuntimeException("Usuário não encontrado");
+        }
+    }
 }
