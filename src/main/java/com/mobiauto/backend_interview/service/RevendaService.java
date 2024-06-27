@@ -6,7 +6,6 @@ import com.mobiauto.backend_interview.entities.Revenda;
 import com.mobiauto.backend_interview.entities.Usuario;
 import com.mobiauto.backend_interview.entities.enums.Cargos;
 import com.mobiauto.backend_interview.repository.RevendaRepository;
-import com.mobiauto.backend_interview.repository.UsuariosRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +18,6 @@ public class RevendaService {
 
     @Autowired
     private RevendaRepository revendaRepository;
-
-    @Autowired
-    private UsuariosRepository usuarioRepository;
-
 
 }
 

@@ -44,6 +44,9 @@ public class AuthenticationController {
         if (this.usuariosRepository.findByNome(data.getNome()) != null) {
             return ResponseEntity.badRequest().build();
         }
+        if (this.usuariosRepository.findByEmail(data.getEmail()) != null) {
+            return ResponseEntity.badRequest().body("E-mail já está em uso.");
+        }
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.getSenha());
         Usuario newUser = new Usuario(data.getNome(), data.getEmail(), encryptedPassword, data.getCargos());
         this.usuariosRepository.save(newUser);

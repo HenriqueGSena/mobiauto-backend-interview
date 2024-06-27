@@ -25,6 +25,9 @@ public class RevendaController {
 
     @PostMapping("/criar")
     public ResponseEntity createRevenda(@RequestBody @Valid RevendaRequestDTO body) {
+        if (this.revendaRepository.existsByCnpj(body.cnpj())) {
+            return ResponseEntity.badRequest().body("CNPJ já está em uso.");
+        }
         Revenda newRevenda = new Revenda(body);
         this.revendaRepository.save(newRevenda);
         return ResponseEntity.ok().build();
