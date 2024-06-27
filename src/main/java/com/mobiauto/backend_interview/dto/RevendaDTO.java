@@ -1,9 +1,11 @@
 package com.mobiauto.backend_interview.dto;
 
 import com.mobiauto.backend_interview.entities.Oportunidade;
+import com.mobiauto.backend_interview.entities.Revenda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class RevendaDTO {
@@ -23,6 +25,12 @@ public class RevendaDTO {
         this.cnpj = cnpj;
         this.oportunidades = oportunidades;
         this.usuarios = usuarios;
+    }
+
+    public RevendaDTO(Revenda revenda) {
+        this.id = revenda.getId();
+        this.nomeSocial = revenda.getNomeSocial();
+        this.cnpj = revenda.getCnpj();
     }
 
     public Long getId() {

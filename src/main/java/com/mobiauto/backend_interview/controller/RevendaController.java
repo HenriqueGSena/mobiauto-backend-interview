@@ -32,4 +32,9 @@ public class RevendaController {
         this.revendaRepository.save(newRevenda);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<RevendaDTO>> listarTodasAsRevendas() {
+        return ResponseEntity.ok(this.revendaService.listaRevendas());
+    }
 }

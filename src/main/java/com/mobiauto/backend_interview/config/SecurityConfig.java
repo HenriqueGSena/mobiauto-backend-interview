@@ -48,6 +48,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/revendas/criar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/revendas/listar").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/usuarios/{usuarioId}/revendas/{revendaId}").hasAnyRole("ADMIN")
                         .anyRequest().authenticated()
                 )

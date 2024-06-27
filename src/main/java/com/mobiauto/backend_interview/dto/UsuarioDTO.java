@@ -1,6 +1,7 @@
 package com.mobiauto.backend_interview.dto;
 
 import com.mobiauto.backend_interview.entities.Revenda;
+import com.mobiauto.backend_interview.entities.Usuario;
 import com.mobiauto.backend_interview.entities.enums.Cargos;
 
 public class UsuarioDTO {
@@ -10,18 +11,23 @@ public class UsuarioDTO {
     private String email;
     private String senha;
     private Cargos cargos;
-    private Revenda revenda;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String id, String nome, String email, String senha, Cargos cargos, Revenda revenda) {
+    public UsuarioDTO(String id, String nome, String email, String senha, Cargos cargos) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.cargos = cargos;
-        this.revenda = revenda;
+    }
+
+    public UsuarioDTO(Usuario usuario) {
+        this.nome = usuario.getNome();
+        this.email = usuario.getEmail();
+        this.senha = usuario.getSenha();
+        this.cargos = usuario.getCargos();
     }
 
     public String getId() {
@@ -62,13 +68,5 @@ public class UsuarioDTO {
 
     public void setCargos(Cargos cargos) {
         this.cargos = cargos;
-    }
-
-    public Revenda getRevenda() {
-        return revenda;
-    }
-
-    public void setRevenda(Revenda revenda) {
-        this.revenda = revenda;
     }
 }
