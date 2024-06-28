@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RevendaService {
@@ -19,5 +20,11 @@ public class RevendaService {
     @Autowired
     private RevendaRepository revendaRepository;
 
+    @Transactional
+    public List<RevendaDTO> listaRevendas() {
+        return revendaRepository.findAll().stream()
+                .map(RevendaDTO::new)
+                .collect(Collectors.toList());
+    }
 }
 
