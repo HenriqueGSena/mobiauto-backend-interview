@@ -3,17 +3,20 @@ package com.mobiauto.backend_interview.controller;
 import com.mobiauto.backend_interview.dto.OportunidadeDTO;
 import com.mobiauto.backend_interview.entities.Oportunidade;
 import com.mobiauto.backend_interview.repository.OportunidadeRepository;
+import com.mobiauto.backend_interview.service.OportunidadeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/oportunidade")
 public class OportunidadeController {
+
+    @Autowired
+    private OportunidadeService oportunidadeService;
 
     @Autowired
     private OportunidadeRepository oportunidadeRepository;
@@ -23,5 +26,10 @@ public class OportunidadeController {
         Oportunidade newOportunidade = new Oportunidade(body);
         this.oportunidadeRepository.save(newOportunidade);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/listar")
+    public ResponseEntity<List<OportunidadeDTO>> listarTodasOpotunidades() {
+        return ResponseEntity.ok(this.oportunidadeService.listaOportunidades());
     }
 }

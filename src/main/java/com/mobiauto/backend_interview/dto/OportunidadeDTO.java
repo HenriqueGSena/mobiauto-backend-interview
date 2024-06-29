@@ -1,5 +1,6 @@
 package com.mobiauto.backend_interview.dto;
 
+import com.mobiauto.backend_interview.entities.Oportunidade;
 import com.mobiauto.backend_interview.entities.enums.Status;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,14 @@ public class OportunidadeDTO {
         this.description = description;
         this.dataAtribuicao = dataAtribuicao;
         this.dataCriacao = dataCriacao;
+    }
+
+    public OportunidadeDTO(Oportunidade oportunidade) {
+        this.id = oportunidade.getId();
+        this.status = oportunidade.getStatus();
+        this.description = oportunidade.getDescription();
+        this.dataAtribuicao = oportunidade.getDataAtribuicao();
+        this.dataCriacao = oportunidade.getDataCriacao();
     }
 
     public Long getId() {
