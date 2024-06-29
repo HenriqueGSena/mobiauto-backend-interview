@@ -1,13 +1,22 @@
 package com.mobiauto.backend_interview.entities;
 
+import com.mobiauto.backend_interview.dto.OportunidadeDTO;
 import com.mobiauto.backend_interview.entities.enums.Status;
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
-@Entity
+@Entity(name = "oportunidade")
 @Table(name = "oportunidade")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Oportunidade {
 
     @Id
@@ -21,101 +30,21 @@ public class Oportunidade {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "atribuicao")
+    @Column(name = "data_atribuicao")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataAtribuicao;
 
-    @Column(name = "criacao")
+    @Column(name = "data_criacao")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataCriacao;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @OneToMany
+    private List<AtendimentoNegociacao> atendimentoNegociacaos;
 
-    @ManyToOne
-    @JoinColumn(name = "veiculos_id")
-    private Veiculos veiculos;
-
-    @ManyToOne
-    @JoinColumn(name = "revenda_id")
-    private Revenda revenda;
-
-    public Oportunidade() {
-    }
-
-    public Oportunidade(Long id, Status status, String description, LocalDateTime dataAtribuicao, LocalDateTime dataCriacao, Cliente cliente, Veiculos veiculos, Revenda revenda) {
-        this.id = id;
-        this.status = status;
-        this.description = description;
-        this.dataAtribuicao = dataAtribuicao;
-        this.dataCriacao = dataCriacao;
-        this.cliente = cliente;
-        this.veiculos = veiculos;
-        this.revenda = revenda;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDateTime getDataAtribuicao() {
-        return dataAtribuicao;
-    }
-
-    public void setDataAtribuicao(LocalDateTime dataAtribuicao) {
-        this.dataAtribuicao = dataAtribuicao;
-    }
-
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Veiculos getVeiculos() {
-        return veiculos;
-    }
-
-    public void setVeiculos(Veiculos veiculos) {
-        this.veiculos = veiculos;
-    }
-
-    public Revenda getRevenda() {
-        return revenda;
-    }
-
-    public void setRevenda(Revenda revenda) {
-        this.revenda = revenda;
+    public Oportunidade(OportunidadeDTO body) {
+        this.status = body.getStatus();
+        this.description = body.getDescription();
+        this.dataAtribuicao = body.getDataAtribuicao();
+        this.dataCriacao = body.getDataCriacao();
     }
 }

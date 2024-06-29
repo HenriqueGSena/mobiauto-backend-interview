@@ -22,4 +22,5 @@
     <include file="/config/liquibase/changelog/20240623204013_oportunidade.xml" relativeToChangelogFile="false" />
     <include file="/config/liquibase/changelog/20240623205346_veiculos.xml" relativeToChangelogFile="false" />
     <include file="/config/liquibase/changelog/20240626090032_usuarios_revenda.xml" relativeToChangelogFile="false"/>
+    <include file="/config/liquibase/changelog/20240628163025_atendimento_negociacao.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

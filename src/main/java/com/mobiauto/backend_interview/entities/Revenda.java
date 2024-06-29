@@ -31,11 +31,11 @@ public class Revenda {
     @Column(name = "cnpj")
     private String cnpj;
 
-    @OneToMany(mappedBy = "revenda", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Oportunidade> oportunidades = new ArrayList<>();
-
     @OneToMany(mappedBy = "revenda")
     private Set<UsuarioRevenda> usuarioRevenda;
+
+    @OneToMany
+    private List<Oportunidade> oportunidades;
 
     public Revenda(RevendaRequestDTO body) {
         this.nomeSocial = body.nomeSocial();
