@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="atendimento_negociacao" author="sena">
+        <createTable tableName="atendimento_negociacao">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="oportunidade_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cliente_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="veiculos_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="revenda_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="atendimento_negociacao"
+                                 baseColumnNames="oportunidade_id"
+                                 constraintName="fk_atendimento_negociacao_oportunidade"
+                                 referencedTableName="oportunidade"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="atendimento_negociacao"
+                                 baseColumnNames="cliente_id"
+                                 constraintName="fk_atendimento_negociacao_cliente"
+                                 referencedTableName="cliente"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="atendimento_negociacao"
+                                 baseColumnNames="veiculos_id"
+                                 constraintName="fk_atendimento_negociacao_veiculos"
+                                 referencedTableName="veiculos"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="atendimento_negociacao"
+                                 baseColumnNames="revenda_id"
+                                 constraintName="fk_atendimento_negociacao_revenda"
+                                 referencedTableName="revenda"
+                                 referencedColumnNames="id"/>
+
+        <createIndex indexName="idx_oportunidade_id" tableName="atendimento_negociacao">
+            <column name="oportunidade_id"/>
+        </createIndex>
+
+        <createIndex indexName="idx_cliente_id" tableName="atendimento_negociacao">
+            <column name="cliente_id"/>
+        </createIndex>
+
+        <createIndex indexName="idx_veiculos_id" tableName="atendimento_negociacao">
+            <column name="veiculos_id"/>
+        </createIndex>
+
+        <createIndex indexName="idx_revenda_id" tableName="atendimento_negociacao">
+            <column name="revenda_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

@@ -59,4 +59,22 @@
                                  referencedColumnNames="id"/>
     </changeSet>
 
+    <changeSet id="oportunidade-5" author="sena">
+        <dropForeignKeyConstraint baseTableName="oportunidade" constraintName="fk_oportunidade_cliente"/>
+    </changeSet>
+
+    <changeSet id="oportunidade-6" author="sena">
+        <dropForeignKeyConstraint baseTableName="oportunidade" constraintName="fk_oportunidade_veiculos"/>
+    </changeSet>
+
+    <changeSet id="oportunidade-7" author="sena">
+        <dropForeignKeyConstraint baseTableName="oportunidade" constraintName="fk_oportunidade_revenda"/>
+    </changeSet>
+
+    <changeSet id="oportunidade-8" author="sena">
+        <dropColumn tableName="oportunidade" columnName="cliente_id"/>
+        <dropColumn tableName="oportunidade" columnName="veiculos_id"/>
+        <dropColumn tableName="oportunidade" columnName="revenda_id"/>
+    </changeSet>
+
 </databaseChangeLog>
