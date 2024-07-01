@@ -55,6 +55,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/oportunidade/criar").hasAnyRole("ADMIN", "PROPRIETARIO", "GERENTE", "ASSISTENTE")
                         .requestMatchers(HttpMethod.GET, "/oportunidade/listar").hasAnyRole("ADMIN", "PROPRIETARIO", "GERENTE", "ASSISTENTE")
                         .requestMatchers(HttpMethod.POST, "oportunidade/{oportunidadeId}/oportunidade/{usuarioId}").hasAnyRole("ADMIN", "PROPRIETARIO", "GERENTE")
+                        .requestMatchers(HttpMethod.PUT, "/oportunidade/atualizar/{oportunidadeId}").hasAnyRole("ADMIN", "PROPRIETARIO", "GERENTE", "ASSISTENTE")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

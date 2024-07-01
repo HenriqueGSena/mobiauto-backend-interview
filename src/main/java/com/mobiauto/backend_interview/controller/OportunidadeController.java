@@ -37,4 +37,10 @@ public class OportunidadeController {
     public void associarOportunidadeComUsuario(@PathVariable Long usuarioId, @PathVariable Long oportunidadeId) {
         oportunidadeService.associarUsuarioComOportunidade(usuarioId, oportunidadeId);
     }
+
+    @PutMapping("/atualizar/{oportunidadeId}")
+    public ResponseEntity atualizarOportunidade(@PathVariable Long oportunidadeId, @RequestBody OportunidadeDTO oportunidadeDTO) {
+        OportunidadeDTO oportunidadeAtualizada = oportunidadeService.atualizarOportunidade(oportunidadeId, oportunidadeDTO);
+        return ResponseEntity.ok(oportunidadeAtualizada);
+    }
 }

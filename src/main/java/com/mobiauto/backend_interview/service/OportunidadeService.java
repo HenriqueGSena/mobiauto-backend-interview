@@ -48,4 +48,18 @@ public class OportunidadeService {
             throw new RuntimeException("Erro ao associar usuario a oportunidade");
         }
     }
+
+    public OportunidadeDTO atualizarOportunidade(Long oportunidadeId, OportunidadeDTO oportunidadeDTO) {
+        Optional<Oportunidade> oportunidade = oportunidadeRepository.findById(oportunidadeId);
+        if (oportunidade.isPresent()) {
+            Oportunidade oportunidadeAtualizada = oportunidade.get();
+            oportunidadeAtualizada.setStatus(oportunidadeDTO.getStatus());
+            oportunidadeAtualizada.setDescription(oportunidadeDTO.getDescription());
+            oportunidadeAtualizada.setDataAtribuicao(oportunidadeDTO.getDataAtribuicao());
+            oportunidadeAtualizada.setDataCriacao(oportunidadeDTO.getDataCriacao());
+            return new OportunidadeDTO(oportunidadeRepository.save(oportunidadeAtualizada));
+        } else {
+            throw new RuntimeException("Oportunidade não encontrada");
+        }
+    }
 }
