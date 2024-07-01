@@ -1,5 +1,6 @@
 package com.mobiauto.backend_interview.entities;
 
+import com.mobiauto.backend_interview.dto.VeiculosDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,11 +29,16 @@ public class Veiculos {
     @Column(name = "versao")
     private String versao;
 
-    @Column(name = "ano_modelo")
+    @Column(name = "anoModelo")
     private String anoModelo;
 
     @ManyToOne
-    @JoinColumn(name = "veiculos", nullable = false)
     private AtendimentoNegociacao atendimentoNegociacao;
 
+    public Veiculos(VeiculosDTO body) {
+        this.marca = body.getMarca();
+        this.modelo = body.getModelo();
+        this.versao = body.getVersao();
+        this.anoModelo = body.getAnoModelo();
+    }
 }
