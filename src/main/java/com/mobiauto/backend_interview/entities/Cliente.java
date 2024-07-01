@@ -29,6 +29,6 @@ public class Cliente {
     @Column(name = "telefone")
     private String telefone;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AtendimentoNegociacao> atendimentos;
+    @OneToMany(mappedBy = "cliente")
+    private Set<AtendimentoNegociacao> atendimentoNegociacaos;
 }

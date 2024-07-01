@@ -32,4 +32,9 @@ public class OportunidadeController {
     public ResponseEntity<List<OportunidadeDTO>> listarTodasOpotunidades() {
         return ResponseEntity.ok(this.oportunidadeService.listaOportunidades());
     }
+
+    @PostMapping("/{usuarioId}/oportunidade/{oportunidadeId}")
+    public void associarOportunidadeComUsuario(@PathVariable Long usuarioId, @PathVariable Long oportunidadeId) {
+        oportunidadeService.associarUsuarioComOportunidade(usuarioId, oportunidadeId);
+    }
 }

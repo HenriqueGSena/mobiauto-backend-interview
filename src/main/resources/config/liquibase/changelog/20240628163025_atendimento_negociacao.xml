@@ -65,5 +65,45 @@
             <column name="revenda_id"/>
         </createIndex>
     </changeSet>
+    
+    <changeSet id="atendimento_negociacao-1" author="sena">
+        <addColumn tableName="atendimento_negociacao">
+            <column name="usuario_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="atendimento_negociacao"
+                                 baseColumnNames="usuario_id"
+                                 constraintName="fk_atendimento_negociacao_usuario"
+                                 referencedTableName="usuarios"
+                                 referencedColumnNames="id"/>
+
+        <createIndex indexName="idx_usuario_id" tableName="atendimento_negociacao">
+            <column name="usuario_id"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="atendimento_negociacao-2" author="sena">
+        <dropNotNullConstraint tableName="atendimento_negociacao"
+                               columnName="oportunidade_id"
+                               columnDataType="bigint"/>
+
+        <dropNotNullConstraint tableName="atendimento_negociacao"
+                               columnName="cliente_id"
+                               columnDataType="bigint"/>
+
+        <dropNotNullConstraint tableName="atendimento_negociacao"
+                               columnName="veiculos_id"
+                               columnDataType="bigint"/>
+
+        <dropNotNullConstraint tableName="atendimento_negociacao"
+                               columnName="revenda_id"
+                               columnDataType="bigint"/>
+
+        <dropNotNullConstraint tableName="atendimento_negociacao"
+                               columnName="usuario_id"
+                               columnDataType="bigint"/>
+    </changeSet>
 
 </databaseChangeLog>
