@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface OportunidadeRepository extends JpaRepository<Oportunidade, Long> {
-    List<Oportunidade> findByUsuarioId(Long usuarioId);
 }
