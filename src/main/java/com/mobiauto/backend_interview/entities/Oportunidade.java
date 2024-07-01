@@ -38,7 +38,7 @@ public class Oportunidade {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dataCriacao;
 
-    @OneToMany
+    @OneToMany(mappedBy = "oportunidades")
     private List<AtendimentoNegociacao> atendimentoNegociacaos;
 
     public Oportunidade(OportunidadeDTO body) {

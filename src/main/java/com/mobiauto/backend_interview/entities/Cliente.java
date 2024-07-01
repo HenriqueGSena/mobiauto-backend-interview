@@ -1,5 +1,6 @@
 package com.mobiauto.backend_interview.entities;
 
+import com.mobiauto.backend_interview.dto.ClienteDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,12 @@ public class Cliente {
     @Column(name = "telefone")
     private String telefone;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AtendimentoNegociacao> atendimentos;
+    @OneToMany(mappedBy = "cliente")
+    private Set<AtendimentoNegociacao> atendimentoNegociacaos;
+
+    public Cliente(ClienteDTO body) {
+        this.nome = body.getNome();
+        this.email = body.getEmail();
+        this.telefone = body.getTelefone();
+    }
 }

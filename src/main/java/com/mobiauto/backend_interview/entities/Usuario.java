@@ -41,6 +41,9 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private Set<UsuarioRevenda> usuarioRevenda;
 
+    @OneToMany(mappedBy = "usuario")
+    private Set<AtendimentoNegociacao> atendimentoNegociacao;
+
     public Usuario(String nome, String email, String senha, Cargos cargos) {
         this.nome = nome;
         this.email = email;

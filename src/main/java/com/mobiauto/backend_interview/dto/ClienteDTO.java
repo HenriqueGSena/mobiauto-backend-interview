@@ -1,5 +1,7 @@
 package com.mobiauto.backend_interview.dto;
 
+import com.mobiauto.backend_interview.entities.Cliente;
+
 public class ClienteDTO {
 
     private Long id;
@@ -15,6 +17,13 @@ public class ClienteDTO {
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+    }
+
+    public ClienteDTO(Cliente cliente) {
+        this.id = cliente.getId();
+        this.nome = cliente.getNome();
+        this.email = cliente.getEmail();
+        this.telefone = cliente.getTelefone();
     }
 
     public Long getId() {

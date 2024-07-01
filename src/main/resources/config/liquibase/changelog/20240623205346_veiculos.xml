@@ -26,4 +26,8 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="veiculos-2" author="sena">
+        <renameColumn tableName="veiculos" oldColumnName="ano_modelo" newColumnName="anoModelo" columnDataType="VARCHAR(4)"/>
+    </changeSet>
+
 </databaseChangeLog>
