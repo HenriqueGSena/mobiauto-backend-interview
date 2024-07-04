@@ -30,4 +30,8 @@
         <renameColumn tableName="veiculos" oldColumnName="ano_modelo" newColumnName="anoModelo" columnDataType="VARCHAR(4)"/>
     </changeSet>
 
+    <changeSet id="veiculos-3" author="sena">
+        <renameColumn tableName="veiculos" oldColumnName="anoModelo" newColumnName="ano_modelo" columnDataType="VARCHAR(4)"/>
+    </changeSet>
+
 </databaseChangeLog>
