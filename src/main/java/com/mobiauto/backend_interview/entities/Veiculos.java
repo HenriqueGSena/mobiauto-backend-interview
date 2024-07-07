@@ -29,11 +29,11 @@ public class Veiculos {
     @Column(name = "versao")
     private String versao;
 
-    @Column(name = "anoModelo")
+    @Column(name = "ano_modelo")
     private String anoModelo;
 
-    @ManyToOne
-    private AtendimentoNegociacao atendimentoNegociacao;
+//    @ManyToOne
+//    private AtendimentoNegociacao atendimentoNegociacao;
 
     public Veiculos(VeiculosDTO body) {
         this.marca = body.getMarca();

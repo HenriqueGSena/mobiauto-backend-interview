@@ -1,5 +1,7 @@
 package com.mobiauto.backend_interview.dto;
 
+import com.mobiauto.backend_interview.entities.Veiculos;
+
 public class VeiculosDTO {
 
     private Long id;
@@ -17,6 +19,14 @@ public class VeiculosDTO {
         this.modelo = modelo;
         this.versao = versao;
         this.anoModelo = anoModelo;
+    }
+
+    public VeiculosDTO(Veiculos veiculos) {
+        this.id = veiculos.getId();
+        this.marca = veiculos.getMarca();
+        this.modelo = veiculos.getModelo();
+        this.versao = veiculos.getVersao();
+        this.anoModelo = veiculos.getAnoModelo();
     }
 
     public Long getId() {
