@@ -1,5 +1,5 @@
 
-# Desafio técnico da Mobiauto - Sistema de Revendas de Veículos
+# Mobiauto - Sistema de Revendas de Veículos
 
 Bem-vindo à documentação da Mobiauto Backend Interview. Esta aplicação foi desenvolvida para o gerenciamento de revendas de veículos, proporcionando registro de revendas feitas pelas lojas parceiras. O objetivo é facilitar a venda de veiculos automotores dentro da plataforma.
 ## Stack utilizada
